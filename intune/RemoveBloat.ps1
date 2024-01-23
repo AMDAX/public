@@ -121,7 +121,7 @@ if ($liveversion -ne $currentversion) {
 write-host "Script has been updated, please download the latest version from $liveuri" -ForegroundColor Red
 }
 }
-Get-ScriptVersion -liveuri "https://raw.githubusercontent.com/andrew-s-taylor/public/main/De-Bloat/RemoveBloat.ps1"
+Get-ScriptVersion -liveuri "https://raw.githubusercontent.com/AMDAX/public/main/intune/RemoveBloat.ps1"
 
 
 
@@ -339,8 +339,8 @@ switch ($locale) {
         "Microsoft.RemoteDesktop"
         "Microsoft.SkypeApp"
         "Microsoft.StorePurchaseApp"
-        "Microsoft.Office.Todo.List"
-        "Microsoft.Whiteboard"
+        #"Microsoft.Office.Todo.List"
+        #"Microsoft.Whiteboard"
         "Microsoft.WindowsAlarms"
         #"Microsoft.WindowsCamera"
         "microsoft.windowscommunicationsapps"
@@ -839,7 +839,7 @@ if ($version.Caption -like "*Windows 11*") {
 # Define the registry key and value
 $registryPath = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsCopilot"
 $propertyName = "TurnOffWindowsCopilot"
-$propertyValue = 1
+$propertyValue = 0
 
 # Check if the registry key exists
 if (!(Test-Path $registryPath)) {
@@ -860,7 +860,7 @@ if ($null -eq $currentValue -or $currentValue.$propertyName -ne $propertyValue) 
 ##Grab the default user as well
 $registryPath = "HKEY_USERS\.DEFAULT\Software\Policies\Microsoft\Windows\WindowsCopilot"
 $propertyName = "TurnOffWindowsCopilot"
-$propertyValue = 1
+$propertyValue = 0
 
 # Check if the registry key exists
 if (!(Test-Path $registryPath)) {
@@ -882,7 +882,7 @@ if ($null -eq $currentValue -or $currentValue.$propertyName -ne $propertyValue) 
 reg load HKU\temphive "c:\users\default\ntuser.dat"
 $registryPath = "registry::hku\temphive\Software\Policies\Microsoft\Windows\WindowsCopilot"
 $propertyName = "TurnOffWindowsCopilot"
-$propertyValue = 1
+$propertyValue = 0
 
 # Check if the registry key exists
 if (!(Test-Path $registryPath)) {
@@ -908,7 +908,7 @@ write-host "Removed"
 foreach ($sid in $UserSIDs) {
     $registryPath = "Registry::HKU\$sid\SOFTWARE\Policies\Microsoft\Windows\WindowsCopilot"
     $propertyName = "TurnOffWindowsCopilot"
-    $propertyValue = 1
+    $propertyValue = 0
     
     # Check if the registry key exists
     if (!(Test-Path $registryPath)) {
