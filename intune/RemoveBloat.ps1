@@ -473,22 +473,22 @@ $UserSIDs = Get-ChildItem "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Pr
     }
 
     #Disables Web Search in Start Menu
-    Write-Host "Disabling Bing Search in Start Menu"
-    $WebSearch = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Search"
-    If (!(Test-Path $WebSearch)) {
-        New-Item $WebSearch
-    }
-    Set-ItemProperty $WebSearch DisableWebSearch -Value 1 
+    # Write-Host "Disabling Bing Search in Start Menu"
+    # $WebSearch = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Search"
+    # If (!(Test-Path $WebSearch)) {
+    #     New-Item $WebSearch
+    # }
+    # Set-ItemProperty $WebSearch DisableWebSearch -Value 1 
     ##Loop through all user SIDs in the registry and disable Bing Search
-    foreach ($sid in $UserSIDs) {
-        $WebSearch = "Registry::HKU\$sid\SOFTWARE\Microsoft\Windows\CurrentVersion\Search"
-        If (!(Test-Path $WebSearch)) {
-            New-Item $WebSearch
-        }
-        Set-ItemProperty $WebSearch BingSearchEnabled -Value 0
-    }
+    # foreach ($sid in $UserSIDs) {
+    #     $WebSearch = "Registry::HKU\$sid\SOFTWARE\Microsoft\Windows\CurrentVersion\Search"
+    #     If (!(Test-Path $WebSearch)) {
+    #         New-Item $WebSearch
+    #     }
+    #     Set-ItemProperty $WebSearch BingSearchEnabled -Value 0
+    # }
     
-    Set-ItemProperty "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search" BingSearchEnabled -Value 0 
+    # Set-ItemProperty "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search" BingSearchEnabled -Value 0 
 
             
     #Stops the Windows Feedback Experience from sending anonymous data
