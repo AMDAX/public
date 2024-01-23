@@ -123,9 +123,6 @@ write-host "Script has been updated, please download the latest version from $li
 }
 Get-ScriptVersion -liveuri "https://raw.githubusercontent.com/AMDAX/public/main/intune/RemoveBloat.ps1"
 
-
-
-
 #Create Folder
 $DebloatFolder = "C:\ProgramData\Debloat"
 If (Test-Path $DebloatFolder) {
